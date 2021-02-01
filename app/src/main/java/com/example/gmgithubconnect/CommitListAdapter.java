@@ -3,9 +3,12 @@ package com.example.gmgithubconnect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,13 @@ public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.Co
 
     @Override
     public void onBindViewHolder(@NonNull CommitViewHolder holder, int position) {
-         
+        TextView name_tv = holder.itemView.findViewById(R.id.name);
+        TextView message_tv = holder.itemView.findViewById(R.id.message);
+        TextView commit_tv = holder.itemView.findViewById(R.id.commit);
+
+        name_tv.setText(commit_list.get(position).commit_author);
+        message_tv.setText(commit_list.get(position).commit_message);
+        commit_tv.setText(commit_list.get(position).commit_id);
     }
 
     @Override
