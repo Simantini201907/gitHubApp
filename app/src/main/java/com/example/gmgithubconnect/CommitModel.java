@@ -1,12 +1,12 @@
 package com.example.gmgithubconnect;
 
-public class ModelCommit {
+public class CommitModel {
     public String commit_author;
     public String commit_id;
     public String  commit_message;
 
 
-    public ModelCommit(String commit_author, String commit_id, String commit_message) {
+    public CommitModel(String commit_author, String commit_id, String commit_message) {
         this.commit_author = commit_author;
         this.commit_id = commit_id;
         this.commit_message = commit_message;

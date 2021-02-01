@@ -8,19 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.CommitViewHolder> {
-    private ArrayList<ModelCommit> commit_list;
+    private ArrayList<CommitModel> commit_list;
 
-    public CommitListAdapter(ArrayList<ModelCommit> commit_list){
+    public CommitListAdapter(ArrayList<CommitModel> commit_list){
         this.commit_list = commit_list;
     }
 
-    public void updateCommitList(List<ModelCommit> update_list){
+    public void updateCommitList(List<CommitModel> update_list){
         commit_list.clear();
         commit_list.addAll(update_list);
         notifyDataSetChanged();
