@@ -81,6 +81,8 @@ public class CommitViewModel extends AndroidViewModel {
                                     loading_error.setValue(false);
                                 }
 
+
+
                             }
 
                             @Override
@@ -105,10 +107,14 @@ public class CommitViewModel extends AndroidViewModel {
                             public void onSuccess(@io.reactivex.annotations.NonNull List<CommitModel> commitModels) {
                                 Log.d("Sim","total number of commit is " + commitModels.size());
                                 for(CommitModel curr : commitModels) {
-                                    Log.d("Sim","the value coming in is " + curr.commit.message);
+                                    Log.d("Sim","the value of message is " + curr.commit.message);
+                                    Log.d("Sim","the value of Author is " + curr.commit.author.name);
                                     loading_data.setValue(false);
                                     loading_error.setValue(false);
                                 }
+                                commit_list.setValue(commitModels);
+                                loading_error.setValue(false);
+                                loading_data.setValue(false);
 
                             }
 
