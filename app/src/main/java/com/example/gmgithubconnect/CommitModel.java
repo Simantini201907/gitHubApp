@@ -1,24 +1,17 @@
 package com.example.gmgithubconnect;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class CommitModel {
-    public String commit_author;
+
+    @SerializedName("sha")
+    @Expose
     public String commit_id;
-    public String  commit_message;
 
-
-    public CommitModel(String commit_author, String commit_id, String commit_message) {
-        this.commit_author = commit_author;
-        this.commit_id = commit_id;
-        this.commit_message = commit_message;
-    }
-
-    public String getCommit_author() {
-        return commit_author;
-    }
-
-    public void setCommit_author(String commit_author) {
-        this.commit_author = commit_author;
-    }
+    @SerializedName("commit")
+    @Expose
+    public Commit commit;
 
     public String getCommit_id() {
         return commit_id;
@@ -28,11 +21,19 @@ public class CommitModel {
         this.commit_id = commit_id;
     }
 
-    public String getCommit_message() {
-        return commit_message;
+    public Commit getCommit() {
+        return commit;
     }
 
-    public void setCommit_message(String commit_message) {
-        this.commit_message = commit_message;
+    public void setCommit(Commit commit) {
+        this.commit = commit;
+    }
+
+    @Override
+    public String toString() {
+        return "CommitModel{" +
+                "commit_id='" + commit_id + '\'' +
+                ", commit=" + commit +
+                '}';
     }
 }

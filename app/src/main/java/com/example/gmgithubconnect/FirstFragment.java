@@ -48,7 +48,7 @@ public class FirstFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(CommitViewModel.class);
        // viewModel.refresh();
-        viewModel.fetchFromRemote();
+        viewModel.fetchFromRemote2();
         commit_list_view.setLayoutManager(new LinearLayoutManager(getContext()));
         commit_list_view.setAdapter(commitListAdapter);
         observeModel();

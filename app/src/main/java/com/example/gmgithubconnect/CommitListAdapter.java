@@ -37,8 +37,8 @@ public class CommitListAdapter extends RecyclerView.Adapter<CommitListAdapter.Co
         TextView message_tv = holder.itemView.findViewById(R.id.message);
         TextView commit_tv = holder.itemView.findViewById(R.id.commit);
 
-        name_tv.setText(commit_list.get(position).commit_author);
-        message_tv.setText(commit_list.get(position).commit_message);
+        name_tv.setText(commit_list.get(position).commit.author.name);
+        message_tv.setText(commit_list.get(position).commit.message);
         commit_tv.setText(commit_list.get(position).commit_id);
     }
 

@@ -19,9 +19,14 @@ public class CommitListService {
                    .create(CommitApi.class);
     }
 
-    public Single<List<RepoModel>> getRepos() {
-      return repo_api.get_repo_names();
+    public Single<List<RepoModel>> getRepos(String url) {
+      return repo_api.get_repo_names(url);
     }
+
+    public Single<List<CommitModel>> getCommits(String url){
+        return repo_api.get_repo_commit(url);
+    }
+
 
     //Create more functions to call more URLS.
 }

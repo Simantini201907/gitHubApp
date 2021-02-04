@@ -29,6 +29,7 @@ public class CommitViewModel extends AndroidViewModel {
     }
 
     //Function to retrieve data
+    /*
     public void refresh() {
         CommitModel data1 = new CommitModel("Simantini", "0z21hdhjsgdyegfhfshsys", "First commit message");
         CommitModel data2 = new CommitModel("Simantini", "0z21hdhjsgdyegfhfsdsds", "Second commit message");
@@ -61,19 +62,50 @@ public class CommitViewModel extends AndroidViewModel {
         commit_list.setValue(cur_list);
         loading_error.setValue(false);
         loading_data.setValue(false);
-    }
+    }*/
 
     public void fetchFromRemote() {
+        String url = "users/" + "rachitiitr" + "/repos";
         loading_data.setValue(true);
         disposable.add(
-                commitService.getRepos()
+                commitService.getRepos("https://api.github.com/repos/Simantini201907/gitHubApp/commits?")
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSingleObserver<List<RepoModel>>() {
                             @Override
                             public void onSuccess(@io.reactivex.annotations.NonNull List<RepoModel> repoModels) {
+                                Log.d("Sim","total number of repos is " + repoModels.size());
                                 for(RepoModel curr : repoModels) {
                                     Log.d("Sim","the value coming in is " + curr.repoName);
+                                    loading_data.setValue(false);
+                                    loading_error.setValue(false);
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(@io.reactivex.annotations.NonNull Throwable e) {
+                                loading_error.setValue(true);
+                                loading_data.setValue(false);
+                                e.printStackTrace();
+                            }
+                        })
+        );
+    }
+
+    public void fetchFromRemote2() {
+        String url = "users/" + "rachitiitr" + "/repos";
+        loading_data.setValue(true);
+        disposable.add(
+                commitService.getCommits("repos/Simantini201907/gitHubApp/commits?")
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableSingleObserver<List<CommitModel>>() {
+                            @Override
+                            public void onSuccess(@io.reactivex.annotations.NonNull List<CommitModel> commitModels) {
+                                Log.d("Sim","total number of commit is " + commitModels.size());
+                                for(CommitModel curr : commitModels) {
+                                    Log.d("Sim","the value coming in is " + curr.commit.message);
                                     loading_data.setValue(false);
                                     loading_error.setValue(false);
                                 }
