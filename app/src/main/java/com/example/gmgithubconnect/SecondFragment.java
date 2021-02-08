@@ -2,6 +2,7 @@ package com.example.gmgithubconnect;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SecondFragment extends Fragment {
     SharedPreferences pref;
@@ -33,6 +36,14 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Save the user_name first
+                SharedPreferences.Editor editor = getContext().getSharedPreferences("github_username", MODE_PRIVATE).edit();
+                editor.putString("github_username", enter_text.toString());
+                editor.apply();
+
+                // To load the data at a later time
+                SharedPreferences prefs = getContext().getSharedPreferences("github_username", MODE_PRIVATE);
+                String loadedString = prefs.getString("github_username", "sim0512");
+                Log.d("GITHUBCODE","The loaded string value is " + loadedString);
                 
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_firstScreen);
